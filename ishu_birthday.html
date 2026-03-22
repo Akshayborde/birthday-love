@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ishu ❤️</title>
+<style>
+body {margin:0;overflow:hidden;background:black;color:white;text-align:center;font-family:sans-serif;}
+h1 {margin-top:20%;font-size:40px;color:#ff4d6d;}
+.message {font-size:20px;margin-top:20px;line-height:1.6;}
+canvas {position:fixed;top:0;left:0;}
+</style>
+</head>
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<h1>🎂 Happy Birthday Ishu ❤️</h1>
+
+<div class="message">
+Happy Birthday To... <br><br>
+My Love. My Soulmate.<br>
+My Future. My Best Friend.<br>
+My Reason To Smile. My Lover.<br>
+My Today, Tomorrow & Always.<br>
+My Laughter. My Support.<br>
+My Happy Place. My Best Memories.<br>
+My Favourite Human. My Rock.<br>
+My Heart & Soul. My One & Only.<br>
+My Whole World. My Everything. 💖
+</div>
+
+<script>
+var canvas=document.getElementById("fireworks");
+var ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+var particles=[];
+
+function createFirework(x,y){
+ for(let i=0;i<50;i++){
+  particles.push({
+    x:x,y:y,
+    vx:(Math.random()-0.5)*5,
+    vy:(Math.random()-0.5)*5,
+    life:100
+  });
+ }
+}
+
+setInterval(()=>{
+ createFirework(Math.random()*canvas.width,Math.random()*canvas.height/2);
+},800);
+
+function animate(){
+ ctx.fillStyle="rgba(0,0,0,0.2)";
+ ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ particles.forEach((p,i)=>{
+  p.x+=p.vx;
+  p.y+=p.vy;
+  p.life--;
+
+  ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
+  ctx.fillRect(p.x,p.y,2,2);
+
+  if(p.life<=0) particles.splice(i,1);
+ });
+
+ requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
